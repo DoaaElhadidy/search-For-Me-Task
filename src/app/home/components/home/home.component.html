@@ -1,0 +1,111 @@
+<div class="home">
+  <div class="row header">
+    <div class="user_name">
+      <span>HR User</span>
+    </div>
+    <div class="language">
+      <span>Language</span>
+      <div class="lang_btns">
+        <button
+          (click)="setLanguage('en')"
+          [ngClass]="{ active_language: language === 'en' }"
+        >
+          English
+        </button>
+        <button
+          (click)="setLanguage('ar')"
+          [ngClass]="{ active_language: language === 'ar' }"
+        >
+          عربي
+        </button>
+      </div>
+    </div>
+    <div class="icons">
+      <i class="fa fa-envelope-o"></i>
+      <i class="fa fa-question-circle-o"></i>
+      <i class="fa fa-gear"></i>
+      <i class="fa fa-caret-down"></i>
+    </div>
+  </div>
+  <div class="row action_btns">
+    <div class="action_btn">
+      <span>show</span>
+      <select>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+    <div class="action_btn">
+      <button><i class="fa fa-plus"></i>Employee</button>
+    </div>
+    <div class="action_btn">
+      <button (click)="onAddFilter()">
+        <i class="fa fa-plus"></i>Add Filter
+      </button>
+    </div>
+    <div class="action_btn">
+      <button>Export <i class="fa fa-download"></i></button>
+    </div>
+  </div>
+  <div class="row search_bar">
+    <input
+      type="text"
+      class="form-control"
+      #input
+      (keyup.enter)="searchByName(input.value)"
+    />
+    <button (click)="searchByName(input.value)">Search</button>
+  </div>
+  <div class="table_container">
+    <div class="loader" *ngIf="!displayedEmployees">
+      <app-loader></app-loader>
+    </div>
+    <div
+      class="no_employees"
+      *ngIf="displayedEmployees && !displayedEmployees.length"
+    >
+      <p>No Employees Found, Please Search Again</p>
+    </div>
+    <div class="table" *ngIf="displayedEmployees && displayedEmployees.length">
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Title</th>
+          <th>Hiring Date</th>
+          <th>Gross Salary</th>
+          <th>Actions</th>
+        </tr>
+        <tr
+          *ngFor="
+            let employee of displayedEmployees;
+            trackBy: trackEmployeeById
+          "
+        >
+          <td>{{ employee.fullName_FL }}</td>
+          <td>{{ employee.position.name_FL }}</td>
+          <td>{{ employee.hiringDate }}</td>
+          <td>{{ employee.firstContractingSalary }}</td>
+          <td>
+            <i class="fa fa-edit"></i>
+            <span>Terminate</span>
+            <span>Suspend</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="pagination">
+    <div class="prev">
+      <a class="icon">&laquo;</a>
+      <a>Previous</a>
+    </div>
+    <div class="next">
+      <a>Next</a>
+      <a class="icon">&raquo;</a>
+    </div>
+  </div>
+  <div class="pages">
+    <p>Page 1/40</p>
+  </div>
+</div>

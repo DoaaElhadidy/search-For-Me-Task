@@ -1,0 +1,85 @@
+.modal {
+  background-color: rgb(255 255 255 / 0.7);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  select {
+    border: 1px solid #c5e0e2;
+    border-radius: 3px;
+    padding: 2px 20px;
+    outline: none;
+  }
+  & > div {
+    margin: auto;
+    background-color: #fff;
+    padding: 20px 40px;
+    position: relative;
+    border: 1px solid #000;
+    border-radius: 5px;
+    & > div {
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+    }
+    & > button {
+      padding: 2px 20px;
+      border: 1px solid #c5e0e2;
+      border-radius: 5px;
+      background-color: #fff;
+      outline: none;
+    }
+    .add_filter {
+      span {
+        margin-right: 10px;
+      }
+    }
+    .select_from_to {
+      span {
+        padding: 0 10px;
+      }
+      .salary_input {
+        width: 100px;
+        border: 1px solid #c5e0e2;
+        border-radius: 3px;
+        outline: none;
+        padding: 5px;
+      }
+      .salary_before_after {
+        width: 100%;
+      }
+    }
+    .actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      button {
+        width: 50%;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        &:first-child {
+          background-color: #c5e0e2;
+          margin: 10px 0;
+        }
+        &:last-child {
+          background-color: #fff;
+          border: 1px solid #c5e0e2;
+        }
+      }
+    }
+  }
+
+  i {
+    position: absolute;
+    top: 3px;
+    right: 6px;
+    font-size: 16px;
+    background-color: transparent;
+    color: #888;
+    cursor: pointer;
+  }
+}

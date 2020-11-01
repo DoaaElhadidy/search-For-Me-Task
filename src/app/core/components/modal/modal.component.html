@@ -1,0 +1,83 @@
+<div class="modal">
+  <div>
+    <div class="add_filter">
+      <span>Add Filter</span>
+      <select #filter [(ngModel)]="selectedFilter">
+        <option
+          *ngFor="let filteredByValue of filters"
+          [value]="filteredByValue"
+        >
+          {{ filteredByValue }}
+        </option>
+      </select>
+    </div>
+    <select #filtersCondition [(ngModel)]="selectedCondition">
+      <option
+        *ngFor="let filterCondition of filterConditions"
+        [value]="filterCondition"
+      >
+        {{ filterCondition }}
+      </option>
+    </select>
+    <div class="select_from_to" *ngIf="selectedFilter === 'Salary'">
+      <input
+        class="salary_input"
+        type="text"
+        [ngClass]="{ salary_before_after: selectedCondition !== 'Between' }"
+        placeholder="Enter Salary"
+        [(ngModel)]="minSalary"
+      />
+      <ng-container *ngIf="selectedCondition === 'Between'">
+        <span>and</span>
+        <input
+          class="salary_input"
+          type="text"
+          placeholder="Enter Salary"
+          [(ngModel)]="maxSalary"
+        />
+      </ng-container>
+    </div>
+    <div
+      class="select_from_to date_picker"
+      *ngIf="selectedFilter === 'Hiring Date'"
+    >
+      <input
+        class="date_input"
+        type="text"
+        placeholder="Enter Date"
+        class="form-control"
+        bsDatepicker
+        [(ngModel)]="minDate"
+      />
+      <ng-container *ngIf="selectedCondition === 'Between'">
+        <span>and</span>
+        <input
+          class="date_input"
+          type="text"
+          placeholder="Enter Date"
+          class="form-control"
+          bsDatepicker
+          [(ngModel)]="maxDate"
+        />
+      </ng-container>
+    </div>
+    <div class="actions">
+      <button
+        type="submit"
+        (click)="
+          modalData.confirmHandler(
+            selectedFilter,
+            selectedCondition,
+            minSalary,
+            maxSalary,
+            minDate,
+            maxDate
+          )
+        "
+      >
+        Confirm
+      </button>
+      <button type="button" (click)="modalData.cancelHandler()">Cancel</button>
+    </div>
+  </div>
+</div>
